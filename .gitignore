@@ -10,3 +10,8 @@ tests/fixtures/projects/*/node_modules/
 !.env.example
 
 skills-lock.json
+
+# Release-tooling artifacts (ruleset snapshots, release-notes drafts).
+# Live next to the repo for the release process; not part of the tree.
+.github-ruleset-*.json
+.release-notes-*.md

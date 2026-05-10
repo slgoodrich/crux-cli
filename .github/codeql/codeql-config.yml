@@ -1,0 +1,19 @@
+name: crux-cli CodeQL config
+
+queries:
+  - uses: security-extended
+  - uses: security-and-quality
+
+paths-ignore:
+  # Intentionally broken fixtures used as test inputs for the
+  # vitest adapter. They are not real code crux ships.
+  - tests/fixtures/projects/**
+  # Captured runner stdout/stderr replayed by tests. Not source.
+  - tests/fixtures/captures/**
+  # Recorded subprocess cassettes from shell-cassette.
+  - tests/integration/__cassettes__/**
+  - tests/integration/runners/__cassettes__/**
+  # Local benchmark/dev scripts; not part of the published package.
+  # The token-bench script reads files and POSTs to a model API
+  # by design (js/file-access-to-http is the intended behavior).
+  - scripts/**

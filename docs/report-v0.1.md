@@ -2,9 +2,9 @@
 
 ## TL;DR
 
-Across 7 real OSS projects (22 to 4,456 tests) and 3 controlled failure
+Across 7 OSS projects (22 to 4,456 tests) and 3 controlled failure
 fixtures, `crux` reduces test runner output by **78% to 99.9%** (median
-~89%). The compression operates in three distinct modes:
+~89%). The compression operates in three modes:
 
 - **All-pass runs** (no failures): raw vitest is already concise; crux
   collapses the per-file summary to one line. Reduction 83-91%.
@@ -31,25 +31,25 @@ with a broken build, 131,802 tokens collapsed to one line.
 
 Compared to other reduction strategies an agent might reach for: `tail
 -200` is silently incorrect (drops 2 of 4 failures on Hono with no
-warning); `vitest --reporter=json` is **1.39M tokens** for the same
-hono run (more than 2,100x crux); `--reporter=dot` is paradoxically
+warning). `vitest --reporter=json` is **1.39M tokens** for the same
+hono run, more than 2,100x crux. `--reporter=dot` is paradoxically
 larger than `--reporter=default`. The hand-crafted
 `vitest --reporter=json | jq | truncate` pipeline produces several
 hundred to a few thousand tokens depending on cap, larger than crux's
-662 for the same hono run, and requires seven prior-knowledge steps,
-two test runs, and unix-only shell tools. Full comparison in the
-"Alternatives compared" section below.
+662 for the same hono run. It also requires seven prior-knowledge
+steps, two test runs, and unix-only shell tools. Full comparison in
+the "Alternatives compared" section below.
 
 At Opus 4.7 input pricing ($5/MTok), the per-run cost saved is
 **~$0.004 on a small project, ~$0.14 on Hono, ~$0.61 on Vue, ~$0.66
 per Nuxt-class cascade event**. Sonnet 4.6 callers see roughly half
 each row (lower per-token price plus ~25% fewer tokens for the same
 content). Per-month figures depend on test-run cadence, which varies
-wildly by project shape, team size, and CI strategy; the Cost impact
+by project shape, team size, and CI strategy; the Cost impact
 section below works through illustrative scenarios at honest cadences
 rather than collapsing them into a single matrix. Anthropic's
-prompt-cache TTL is five minutes, so most agent test workflows are
-not cache-resident across runs and pay full input price each time.
+prompt-cache TTL is five minutes, so most agent test workflows miss
+the cache between runs and pay full input price each time.
 
 ## Problem statement
 
@@ -57,8 +57,8 @@ Test runner output is loud. Default `vitest run` against a 200-test
 project prints file-level summaries, ANSI escapes, and on failures, full
 stack traces stuffed with `node_modules` frames. Agents parsing that
 output spend input tokens on noise: the runner's progress lines,
-framework-internal stack frames, and per-file pass markers are not
-actionable signal for "what failed and why."
+framework-internal stack frames, and per-file pass markers tell the
+agent nothing about what failed or why.
 
 The hono case grounds the problem concretely. Honojs is a 4,456-test
 web framework whose vitest run produces 28,213 ANSI-stripped tokens
@@ -81,10 +81,10 @@ the full metadata for every passed and failed test, producing
 `crux` strips the output to one summary line plus, per failure,
 file:line, the matcher diff (expected vs received), and the closest
 non-`node_modules` stack frame. For `.rejects`/`.resolves` failures,
-the diff body is suppressed in favor of the assertion's message line,
-which already names the user-readable fields (response status,
-statusText, content-type). Exit code passes through unchanged. Same
-outcome, fewer tokens spent reading it.
+crux replaces the diff body with the assertion's message line, which
+already names the user-readable fields (response status, statusText,
+content-type). Exit code passes through unchanged. Same outcome,
+fewer tokens spent reading it.
 
 ## Design
 
@@ -97,8 +97,8 @@ argv → Config → resolve adapter → spawn subprocess → parse → sanitize 
 **Argument parsing.** `parseArgs(argv)` consumes argv plus a small set
 of flags (`--json`, `--raw`, `--full`, `--cwd <dir>`, `-- <command>`)
 and returns a frozen `Config`. The CLI overlays `CRUX_FULL=1` from env
-onto `Config.full`. Unknown flags exit with `InvalidArgError`. Anything
-after `--` is forwarded verbatim to the spawned subprocess.
+onto `Config.full`. Unknown flags exit with `InvalidArgError`. The
+CLI forwards anything after `--` verbatim to the spawned subprocess.
 
 **Adapter resolution.** `resolveCommand(config, projectFiles, adapters)`
 picks the runner adapter. Without `--`, it auto-detects from
@@ -180,13 +180,13 @@ tool produce byte-equivalent output.
 
 ## Methodology
 
-**Capture.** For each target, two files are recorded:
+**Capture.** For each target, I record two files:
 
 - Raw: `npx vitest run > raw.txt 2>&1` from inside the project.
 - Crux: `node dist/cli.js --cwd <project> > crux.txt 2>&1` from this repo.
 
 Both capture `stdout` plus `stderr`. The same vitest invocation runs in both
-cases (crux does not alter the runner's command beyond default-reporter
+cases (crux preserves the runner's command beyond default-reporter
 selection), so any difference in token count comes from crux's parser and
 formatter, not from a different test execution.
 
@@ -201,9 +201,9 @@ raw side.
 
 **Tokenizer.** Anthropic's
 [`/v1/messages/count_tokens`](https://platform.claude.com/docs/en/build-with-claude/token-counting)
-endpoint against `claude-opus-4-7`. Each input is wrapped as a single
-user message; the response's `input_tokens` is the figure used. Token
-counting is free per Anthropic's docs and rate-limited to 100
+endpoint against `claude-opus-4-7`. I wrap each input as a single
+user message and use the response's `input_tokens` as the figure.
+Token counting is free per Anthropic's docs and rate-limited to 100
 requests per minute on the entry tier (well above the ~30 calls this
 benchmark needs). Reduction *ratios* are stable across Anthropic
 model choice (Sonnet 4.6 reproduces the same ratios within 1
@@ -211,11 +211,11 @@ percentage point on every target); absolute counts shift, with Sonnet
 4.6 producing roughly 25% fewer tokens for the same content. See
 Limitations for the cross-model comparison.
 
-**Information retention.** For each failure in the targets above, crux's
-output is checked against raw vitest for: (a) every failing test name
-and path is preserved; (b) the matcher diff or message line is
-preserved; (c) at least one user-code stack frame is preserved. The
-hono `.rejects` failures explicitly drop the diff body in favor of the
+**Information retention.** For each failure in the targets above, I
+check crux's output against raw vitest to confirm: (a) every failing
+test name and path appears; (b) the matcher diff or message line
+appears; (c) at least one user-code stack frame appears. The hono
+`.rejects` failures explicitly drop the diff body in favor of the
 message line; on those failures the message line contains the response
 status, statusText, and content-type headers that the diff body
 redundantly serialized. No other field is dropped silently, and the
@@ -273,7 +273,7 @@ the runner-error shape and emits a single diagnostic line ("Runner error:
 Failed Suites 67"). The agent receiving that line knows to fix the build
 before re-running tests; the 132K tokens of stack-trace soup were
 redundant. **Reduction reaches 99.9% in this mode, but with a tradeoff:
-crux's single-line cascade summary drops the 5 actual assertion failures
+crux's single-line cascade summary drops the 5 assertion failures
 that ran in the suites that did load.** This is by design (cascade
 failures dominate the signal), but it is information loss, not pure
 compression. Agents in cascade scenarios will fix the build first and
@@ -383,7 +383,7 @@ say "2 failures" with full confidence and miss the
 `streamSSE > Should not be called onAbort if already closed` pair. No
 warning, no signal that anything was lost. crux preserves all four.
 
-**`--reporter=json` is paradoxically worse.** Vitest's JSON reporter
+**`--reporter=json` is somehow worse, not better.** Vitest's JSON reporter
 emits the full metadata for every passed and failed test (4,456 entries
 for hono). The output is **1.39 million tokens**, more than 2,100x
 crux's, ~50x raw default-reporter output, and far past most cheap-model
@@ -426,16 +426,16 @@ setup**, and the smallest of the alternatives I measured for the hono
 case. The tradeoff isn't "smaller than every conceivable alternative";
 it's "smallest among options that (a) preserve all failures, (b) work
 the same way on Windows / macOS / Linux, (c) need no flags or
-post-processing tools the user has to know about, and (d) will produce
-the same shape across vitest, jest, pytest, cargo test, and go test
-as those adapters ship in v0.2 through v0.5." For agents that need
+post-processing tools, and (d) will produce the same shape across
+vitest, jest, pytest, cargo test, and go test as those adapters ship
+in v0.2 through v0.5." For agents that need
 the original verbatim payload (debugging the truncation pass itself,
 or auditing the suppressed diff bodies), `crux --full` and
 `CRUX_FULL=1` bypass the sanitize pass.
 
 ## Cost impact
 
-Per-run savings are directly measured. Translating to per-day or
+I measured per-run savings directly. Translating to per-day or
 per-month requires an assumption about test-run cadence, which varies
 wildly by project shape, team size, and CI strategy: a small library
 might run its full suite hundreds of times a day across PR CI plus
@@ -487,7 +487,7 @@ the Nuxt scenario) happen rarely and aren't included in any cadence
 above; each one is bonus context that the team would otherwise have
 eaten as agent input cost.
 
-**Caching does not substitute for source-side reduction.** Anthropic's
+**Source-side reduction beats caching.** Anthropic's
 prompt cache defaults to a 5-minute TTL; an optional 1-hour tier is
 enabled via `cache_control: { ttl: "1h" }`. The TTL refreshes on each
 cache hit at no additional cost, so tightly clustered calls stay
@@ -611,10 +611,10 @@ is the literal min and max of the measurements.
 
 ## Conclusion and future work
 
-crux compresses test runner output for agent consumption by 81 to
-99.9% across realistic projects, preserving every failing test name,
-location, and matcher message, and adding less wall-clock overhead
-than the test suite's own run-to-run variance. v0.1 includes vitest
+crux compresses test runner output for agent consumption by 78% to
+99.9% across the projects and fixtures measured, preserving every
+failing test name, location, and matcher message, and adding less
+wall-clock overhead than the test suite's own run-to-run variance. v0.1 includes vitest
 support; v0.2 through v0.5 add jest, pytest, cargo test, and go test
 against the same adapter contract, with the same JSON envelope schema
 (`cruxVersion: 1`, locked through v1.x). Reduction ratios are

@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`snapshots > matches a stale stored snapshot 1`] = `
+{
+  "key": "old-value",
+}
+`;

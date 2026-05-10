@@ -1,0 +1,3 @@
+npm error could not determine executable to run
+npm error path C:\Users\Steve\Desktop\Projects\4-WORKSHOP\crux-cli\tests\fixtures\projects\vitest-binary-not-found
+npm error command not found: vitest

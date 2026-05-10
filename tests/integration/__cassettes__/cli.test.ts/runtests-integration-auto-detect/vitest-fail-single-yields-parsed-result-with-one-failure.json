@@ -1,0 +1,76 @@
+{
+  "version": 2,
+  "_warning": "REVIEW BEFORE COMMITTING. shell-cassette redacts bundled credential patterns + curated env-key values + your custom rules. It does NOT redact: AWS Secret Access Keys, JWTs (without opt-in), encoded credentials, binary output, cwd. Run `shell-cassette scan <path>` to verify before committing. See https://github.com/slgoodrich/shell-cassette/blob/main/docs/troubleshooting.md",
+  "_recorded_by": {
+    "name": "shell-cassette",
+    "version": "0.6.2"
+  },
+  "recordings": [
+    {
+      "call": {
+        "command": "npx",
+        "args": [
+          "vitest",
+          "run",
+          "--reporter=default"
+        ],
+        "cwd": "C:\\Users\\Steve\\Desktop\\Projects\\4-WORKSHOP\\crux-cli\\tests\\fixtures\\projects\\vitest-fail-single",
+        "env": {},
+        "stdin": null
+      },
+      "result": {
+        "stdoutLines": [
+          "",
+          " RUN  v4.1.5 C:/Users/Steve/Desktop/Projects/4-WORKSHOP/crux-cli/tests/fixtures/projects/vitest-fail-single",
+          "",
+          " ❯ tests/sample.test.ts (3 tests | 1 failed) 6ms",
+          "     ✓ passes a sanity check 1ms",
+          "     × fails one expectation 4ms",
+          "     ✓ passes another sanity check 0ms",
+          "",
+          " Test Files  1 failed (1)",
+          "      Tests  1 failed | 2 passed (3)",
+          "   Start at  14:22:16",
+          "   Duration  207ms (transform 14ms, setup 0ms, import 32ms, tests 6ms, environment 0ms)",
+          ""
+        ],
+        "stderrLines": [
+          "",
+          "⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯",
+          "",
+          " FAIL  tests/sample.test.ts > sample > fails one expectation",
+          "AssertionError: expected 1 to be 2 // Object.is equality",
+          "",
+          "- Expected",
+          "+ Received",
+          "",
+          "- 2",
+          "+ 1",
+          "",
+          " ❯ tests/sample.test.ts:9:15",
+          "      7|",
+          "      8|   it('fails one expectation', () => {",
+          "      9|     expect(1).toBe(2)",
+          "       |               ^",
+          "     10|   })",
+          "     11|",
+          "",
+          "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯",
+          ""
+        ],
+        "allLines": null,
+        "exitCode": 1,
+        "signal": null,
+        "durationMs": 1041.5964,
+        "aborted": false,
+        "failed": true,
+        "timedOut": false,
+        "isMaxBuffer": false,
+        "isForcefullyTerminated": false,
+        "isGracefullyCanceled": false,
+        "killed": false
+      },
+      "_redactions": []
+    }
+  ]
+}

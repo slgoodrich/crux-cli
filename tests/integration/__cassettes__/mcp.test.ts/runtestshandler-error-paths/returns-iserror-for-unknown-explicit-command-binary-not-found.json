@@ -1,0 +1,40 @@
+{
+  "version": 2,
+  "_warning": "REVIEW BEFORE COMMITTING. shell-cassette redacts bundled credential patterns + curated env-key values + your custom rules. It does NOT redact: AWS Secret Access Keys, JWTs (without opt-in), encoded credentials, binary output, cwd. Run `shell-cassette scan <path>` to verify before committing. See https://github.com/slgoodrich/shell-cassette/blob/main/docs/troubleshooting.md",
+  "_recorded_by": {
+    "name": "shell-cassette",
+    "version": "0.6.2"
+  },
+  "recordings": [
+    {
+      "call": {
+        "command": "__unknown_binary_for_crux_test__",
+        "args": [],
+        "cwd": "C:\\Users\\Steve\\AppData\\Local\\Temp\\crux-test-IvfEVk",
+        "env": {},
+        "stdin": null
+      },
+      "result": {
+        "stdoutLines": [
+          ""
+        ],
+        "stderrLines": [
+          "'__unknown_binary_for_crux_test__' is not recognized as an internal or external command,\r",
+          "operable program or batch file."
+        ],
+        "allLines": null,
+        "exitCode": 1,
+        "signal": null,
+        "durationMs": 97.51550000000043,
+        "aborted": false,
+        "failed": true,
+        "timedOut": false,
+        "isMaxBuffer": false,
+        "isForcefullyTerminated": false,
+        "isGracefullyCanceled": false,
+        "killed": false
+      },
+      "_redactions": []
+    }
+  ]
+}

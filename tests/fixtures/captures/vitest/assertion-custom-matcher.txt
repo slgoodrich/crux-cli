@@ -1,0 +1,28 @@
+
+ RUN  v4.1.5 C:/Users/Steve/Desktop/Projects/4-WORKSHOP/crux-cli/tests/fixtures/projects/vitest-fail-single
+
+ ❯ tests/sample.test.ts (3 tests | 1 failed) 6ms
+     ✓ passes a sanity check 1ms
+     × fails one expectation 4ms
+     ✓ passes another sanity check 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/sample.test.ts > sample > fails one expectation
+Error: expected 7 to be 42
+ ❯ tests/sample.test.ts:19:15
+     17|   it('fails one expectation', () => {
+     18|     // @ts-expect-error - custom matcher not in type defs
+     19|     expect(7).toBeFortyTwo()
+       |               ^
+     20|   })
+     21|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  01:39:58
+   Duration  247ms (transform 17ms, setup 0ms, import 44ms, tests 6ms, environment 0ms)
+

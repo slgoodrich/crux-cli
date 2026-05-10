@@ -1,0 +1,12 @@
+TAP version 13
+1..1
+ok 1 - tests/sample.test.ts # time=3.61ms {
+    1..1
+    ok 1 - sample # time=2.85ms {
+        1..4
+        ok 1 - adds numbers # time=2.09ms
+        ok 2 - subtracts numbers # time=0.16ms
+        ok 3 - multiplies numbers # time=0.14ms
+        ok 4 - skipped for the pass-with-skips capture # SKIP
+    }
+}

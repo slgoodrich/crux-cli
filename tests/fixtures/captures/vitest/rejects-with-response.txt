@@ -1,0 +1,133 @@
+
+ RUN  v4.1.5 hono
+
+ ❯ index.test.ts (10 tests | 1 failed) 50ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL   node  index.test.ts > stream > Should call onAbort
+AssertionError: promise resolved "Response { status: 200, statusText: 'OK', headers: Headers { 'content-type': 'text/plain; charset=UTF-8', date: 'Sun, 10 May 2026 03:29:49 GMT', connection: 'keep-alive', 'keep-alive': 'timeout=5', 'transfer-encoding': 'chunked' }, body: ReadableStream { locked: false, state: 'readable', supportsBYOB: true }, bodyUsed: false, ok: true, redirected: false, type: 'basic', url: 'http://localhost:64620/stream' }" instead of rejecting
+
+- Expected
++ Received
+
+- [Error: rejected promise]
++ Response {
++   Symbol(state): Object {
++     "aborted": false,
++     "body": Object {
++       "length": null,
++       "source": null,
++       "stream": ReadableStream {
++         Symbol(kType): "ReadableStream",
++         Symbol(kState): Object {
++           "controller": ReadableByteStreamController {
++             Symbol(kType): "ReadableByteStreamController",
++             Symbol(kState): Object {
++               "autoAllocateChunkSize": undefined,
++               "byobRequest": null,
++               "cancelAlgorithm": [Function anonymous],
++               "closeRequested": false,
++               "highWaterMark": 0,
++               "pendingPullIntos": Array [],
++               "pullAgain": false,
++               "pullAlgorithm": [Function anonymous],
++               "pulling": false,
++               "queue": Array [],
++               "queueTotalSize": 0,
++               "started": true,
++               "stream": [Circular],
++             },
++           },
++           "disturbed": false,
++           "reader": undefined,
++           "state": "readable",
++           "storedError": undefined,
++           "transfer": Object {
++             "port1": undefined,
++             "port2": undefined,
++             "promise": undefined,
++             "writable": undefined,
++           },
++         },
++         Symbol(nodejs.webstream.isClosedPromise): Object {
++           "promise": Promise {},
++           "reject": [Function anonymous],
++           "resolve": [Function anonymous],
++         },
++         Symbol(nodejs.webstream.controllerErrorFunction): [Function anonymous],
++       },
++     },
++     "cacheState": "",
++     "headersList": HeadersList {
++       "cookies": null,
++       Symbol(headers map): Map {
++         "content-type" => Object {
++           "name": "content-type",
++           "value": "text/plain; charset=UTF-8",
++         },
++         "date" => Object {
++           "name": "date",
++           "value": "Sun, 10 May 2026 03:29:49 GMT",
++         },
++         "connection" => Object {
++           "name": "connection",
++           "value": "keep-alive",
++         },
++         "keep-alive" => Object {
++           "name": "keep-alive",
++           "value": "timeout=5",
++         },
++         "transfer-encoding" => Object {
++           "name": "transfer-encoding",
++           "value": "chunked",
++         },
++       },
++       Symbol(headers map sorted): null,
++     },
++     "rangeRequested": false,
++     "requestIncludesCredentials": true,
++     "status": 200,
++     "statusText": "OK",
++     "timingAllowPassed": true,
++     "timingInfo": Object {
++       "decodedBodySize": 0,
++       "encodedBodySize": 0,
++       "endTime": 0,
++       "finalConnectionTimingInfo": Object {
++         "ALPNNegotiatedProtocol": undefined,
++         "connectionEndTime": 1550.2223,
++         "connectionStartTime": 1550.2223,
++         "domainLookupEndTime": 1550.2223,
++         "domainLookupStartTime": 1550.2223,
++         "secureConnectionStartTime": 1550.2223,
++       },
++       "finalNetworkRequestStartTime": 1551.3371,
++       "finalNetworkResponseStartTime": 1553.8493,
++       "finalServiceWorkerStartTime": 0,
++       "postRedirectStartTime": 1550.2223,
++       "redirectEndTime": 0,
++       "redirectStartTime": 0,
++       "startTime": 1550.2223,
++     },
++     "type": "basic",
++     "urlList": Array [
++       "http://localhost:64620/stream",
++     ],
++   },
++   Symbol(headers): Headers {},
++ }
+
+ ❯ index.test.ts:136:75
+    134|   it('Should call onAbort', async () => {
+    135|     const controller = new AbortController()
+    136|     const res = expect(agent.get('/stream', { signal: controller.signa…
+       |                                                                           ^
+    137|       'This operation was aborted'
+    138|     )
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 passed (10)
+   Start at  03:29:49
+   Duration  500ms

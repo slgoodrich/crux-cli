@@ -1,0 +1,17 @@
+node_modules/
+dist/
+coverage/
+*.log
+.vitest-mq
+tests/fixtures/projects/*/node_modules/
+
+.env
+.env.*
+!.env.example
+
+skills-lock.json
+
+# Release-tooling artifacts (ruleset snapshots, release-notes drafts).
+# Live next to the repo for the release process; not part of the tree.
+.github-ruleset-*.json
+.release-notes-*.md

@@ -1,0 +1,60 @@
+
+ RUN  v4.1.5 C:/Users/Steve/Desktop/Projects/4-WORKSHOP/crux-cli/tests/fixtures/projects/vitest-snapshot
+
+ ❯ tests/sample.test.ts (2 tests | 2 failed) 14ms
+     × matches an inline snapshot 12ms
+     × matches a stale stored snapshot 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/sample.test.ts > snapshots > matches an inline snapshot
+Error: Snapshot `snapshots > matches an inline snapshot 1` mismatched
+
+- Expected
++ Received
+
+  {
+-   "name": "original",
++   "name": "changed",
+-   "value": 1,
++   "value": 99,
+  }
+
+ ❯ tests/sample.test.ts:5:44
+      3| describe('snapshots', () => {
+      4|   it('matches an inline snapshot', () => {
+      5|     expect({ name: 'changed', value: 99 }).toMatchInlineSnapshot(`
+       |                                            ^
+      6|       {
+      7|         "name": "original",
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/sample.test.ts > snapshots > matches a stale stored snapshot
+Error: Snapshot `snapshots > matches a stale stored snapshot 1` mismatched
+
+- Expected
++ Received
+
+  {
+-   "key": "old-value",
++   "key": "new-value",
+  }
+
+ ❯ tests/sample.test.ts:14:34
+     12|
+     13|   it('matches a stale stored snapshot', () => {
+     14|     expect({ key: 'new-value' }).toMatchSnapshot()
+       |                                  ^
+     15|   })
+     16| })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+  Snapshots  2 failed
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  01:38:50
+   Duration  259ms (transform 18ms, setup 0ms, import 38ms, tests 14ms, environment 0ms)
+

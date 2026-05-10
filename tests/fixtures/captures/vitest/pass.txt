@@ -1,0 +1,10 @@
+
+ RUN  v4.1.5 C:/Users/Steve/Desktop/Projects/4-WORKSHOP/crux-cli/tests/fixtures/projects/vitest-pass
+
+ ✓ tests/sample.test.ts (4 tests | 1 skipped) 3ms
+
+ Test Files  1 passed (1)
+      Tests  3 passed | 1 skipped (4)
+   Start at  01:37:35
+   Duration  214ms (transform 17ms, setup 0ms, import 31ms, tests 3ms, environment 0ms)
+

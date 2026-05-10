@@ -1,0 +1,76 @@
+{
+  "version": 2,
+  "_warning": "REVIEW BEFORE COMMITTING. shell-cassette redacts bundled credential patterns + curated env-key values + your custom rules. It does NOT redact: AWS Secret Access Keys, JWTs (without opt-in), encoded credentials, binary output, cwd. Run `shell-cassette scan <path>` to verify before committing. See https://github.com/slgoodrich/shell-cassette/blob/main/docs/troubleshooting.md",
+  "_recorded_by": {
+    "name": "shell-cassette",
+    "version": "0.6.2"
+  },
+  "recordings": [
+    {
+      "call": {
+        "command": "npx",
+        "args": [
+          "vitest",
+          "run",
+          "--reporter=default"
+        ],
+        "cwd": "C:\\Users\\Steve\\Desktop\\Projects\\4-WORKSHOP\\crux-cli\\tests\\fixtures\\projects\\vitest-compile-error",
+        "env": {},
+        "stdin": null
+      },
+      "result": {
+        "stdoutLines": [
+          "",
+          " RUN  v4.1.5 C:/Users/Steve/Desktop/Projects/4-WORKSHOP/crux-cli/tests/fixtures/projects/vitest-compile-error",
+          "",
+          " ❯ tests/broken.test.ts (0 test)",
+          "",
+          " Test Files  1 failed (1)",
+          "      Tests  no tests",
+          "   Start at  18:12:09",
+          "   Duration  170ms (transform 0ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)",
+          ""
+        ],
+        "stderrLines": [
+          "",
+          "⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯",
+          "",
+          " FAIL  tests/broken.test.ts [ tests/broken.test.ts ]",
+          "Error: Transform failed with 1 error:",
+          "",
+          "\u001b[31m[PARSE_ERROR] Error:\u001b[0m Expected function body",
+          "   \u001b[38;5;246m╭\u001b[0m\u001b[38;5;246m─\u001b[0m\u001b[38;5;246m[\u001b[0m tests/broken.test.ts:6:11 \u001b[38;5;246m]\u001b[0m",
+          "   \u001b[38;5;246m│\u001b[0m",
+          " \u001b[38;5;246m6 │\u001b[0m \u001b[38;5;249m \u001b[0m\u001b[38;5;249m \u001b[0m\u001b[38;5;249m \u001b[0m\u001b[38;5;249m \u001b[0m\u001b[38;5;249me\u001b[0m\u001b[38;5;249mx\u001b[0m\u001b[38;5;249mp\u001b[0m\u001b[38;5;249me\u001b[0m\u001b[38;5;249mc\u001b[0m\u001b[38;5;249mt\u001b[0m(x)\u001b[38;5;249m.\u001b[0m\u001b[38;5;249mt\u001b[0m\u001b[38;5;249mo\u001b[0m\u001b[38;5;249mB\u001b[0m\u001b[38;5;249me\u001b[0m\u001b[38;5;249m(\u001b[0m\u001b[38;5;249m{\u001b[0m\u001b[38;5;249m}\u001b[0m\u001b[38;5;249m)\u001b[0m",
+          " \u001b[38;5;240m  │\u001b[0m           ─┬─  ",
+          " \u001b[38;5;240m  │\u001b[0m            ╰─── ",
+          " \u001b[38;5;240m  │\u001b[0m ",
+          " \u001b[38;5;240m  │\u001b[0m \u001b[38;5;115mHelp\u001b[0m: Add a function body (`{}`).",
+          "\u001b[38;5;246m───╯\u001b[0m",
+          "",
+          "  Plugin: vite:oxc",
+          "  File: C:/Users/Steve/Desktop/Projects/4-WORKSHOP/crux-cli/tests/fixtures/projects/vitest-compile-error/tests/broken.test.ts",
+          " ❯ transformWithOxc node_modules/vite/dist/node/chunks/node.js:3340:19",
+          " ❯ TransformPluginContext.transform node_modules/vite/dist/node/chunks/node.js:3408:26",
+          " ❯ EnvironmentPluginContainer.transform node_modules/vite/dist/node/chunks/node.js:30179:51",
+          " ❯ loadAndTransform node_modules/vite/dist/node/chunks/node.js:24509:26",
+          "",
+          "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯",
+          ""
+        ],
+        "allLines": null,
+        "exitCode": 1,
+        "signal": null,
+        "durationMs": 1018.4873999999995,
+        "aborted": false,
+        "failed": true,
+        "timedOut": false,
+        "isMaxBuffer": false,
+        "isForcefullyTerminated": false,
+        "isGracefullyCanceled": false,
+        "killed": false
+      },
+      "_redactions": []
+    }
+  ]
+}

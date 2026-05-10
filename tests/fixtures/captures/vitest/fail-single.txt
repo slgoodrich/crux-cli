@@ -1,0 +1,35 @@
+
+ RUN  v4.1.5 C:/Users/Steve/Desktop/Projects/4-WORKSHOP/crux-cli/tests/fixtures/projects/vitest-fail-single
+
+ ❯ tests/sample.test.ts (3 tests | 1 failed) 9ms
+     ✓ passes a sanity check 1ms
+     × fails one expectation 6ms
+     ✓ passes another sanity check 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/sample.test.ts > sample > fails one expectation
+AssertionError: expected 1 to be 2 // Object.is equality
+
+- Expected
++ Received
+
+- 2
++ 1
+
+ ❯ tests/sample.test.ts:9:15
+      7|
+      8|   it('fails one expectation', () => {
+      9|     expect(1).toBe(2)
+       |               ^
+     10|   })
+     11|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  01:38:46
+   Duration  240ms (transform 17ms, setup 0ms, import 32ms, tests 9ms, environment 0ms)
+

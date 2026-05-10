@@ -1,0 +1,35 @@
+
+ RUN  v4.1.5 C:/Users/Steve/Desktop/Projects/4-WORKSHOP/crux-cli/tests/fixtures/projects/vitest-fail-single
+
+ ❯ tests/sample.test.ts (3 tests | 1 failed) 8ms
+     ✓ passes a sanity check 2ms
+     × fails one expectation 5ms
+     ✓ passes another sanity check 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/sample.test.ts > sample > fails one expectation
+AssertionError: expected [Function] to not throw an error but 'Error: forced inside callback' was thrown
+
+- Expected:
+undefined
+
++ Received:
+"Error: forced inside callback"
+
+ ❯ tests/sample.test.ts:14:12
+     12|         throw new Error('forced inside callback')
+     13|       })
+     14|     }).not.toThrow()
+       |            ^
+     15|   })
+     16|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  01:40:19
+   Duration  249ms (transform 19ms, setup 0ms, import 44ms, tests 8ms, environment 0ms)
+

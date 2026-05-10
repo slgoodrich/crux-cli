@@ -1,0 +1,48 @@
+name: ci
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+      - 'LICENSE'
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node: [20, 22]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run test:run
+      - run: npm run test:integration
+      - run: npm run build
+
+      - name: Install fixture deps for E2E
+        shell: bash
+        run: |
+          for proj in vitest-pass vitest-fail-many vitest-compile-error; do
+            (cd "tests/fixtures/projects/$proj" && npm install --no-save --silent)
+          done
+
+      - run: npm run test:e2e
+
+      - name: Verify CLI binary works
+        shell: bash
+        run: |
+          # crux on a directory with no manifest exits 2 with AdapterDetectError
+          out=$(node dist/cli.js --cwd "$(mktemp -d)" 2>&1 || true)
+          echo "$out" | grep -q "no test runner detected"
+
+      - name: Verify crux-mcp handshake
+        shell: bash
+        run: node .github/scripts/verify-mcp-handshake.mjs

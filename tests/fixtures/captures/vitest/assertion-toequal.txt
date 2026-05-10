@@ -1,0 +1,38 @@
+
+ RUN  v4.1.5 C:/Users/Steve/Desktop/Projects/4-WORKSHOP/crux-cli/tests/fixtures/projects/vitest-fail-single
+
+ ❯ tests/sample.test.ts (3 tests | 1 failed) 10ms
+     ✓ passes a sanity check 1ms
+     × fails one expectation 7ms
+     ✓ passes another sanity check 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/sample.test.ts > sample > fails one expectation
+AssertionError: expected { a: 1, b: 2 } to deeply equal { a: 1, b: 3 }
+
+- Expected
++ Received
+
+  {
+    "a": 1,
+-   "b": 3,
++   "b": 2,
+  }
+
+ ❯ tests/sample.test.ts:9:28
+      7|
+      8|   it('fails one expectation', () => {
+      9|     expect({ a: 1, b: 2 }).toEqual({ a: 1, b: 3 })
+       |                            ^
+     10|   })
+     11|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  01:39:21
+   Duration  281ms (transform 16ms, setup 0ms, import 42ms, tests 10ms, environment 0ms)
+

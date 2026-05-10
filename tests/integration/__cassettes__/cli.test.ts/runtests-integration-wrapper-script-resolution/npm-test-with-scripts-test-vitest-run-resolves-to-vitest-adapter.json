@@ -1,0 +1,54 @@
+{
+  "version": 2,
+  "_warning": "REVIEW BEFORE COMMITTING. shell-cassette redacts bundled credential patterns + curated env-key values + your custom rules. It does NOT redact: AWS Secret Access Keys, JWTs (without opt-in), encoded credentials, binary output, cwd. Run `shell-cassette scan <path>` to verify before committing. See https://github.com/slgoodrich/shell-cassette/blob/main/docs/troubleshooting.md",
+  "_recorded_by": {
+    "name": "shell-cassette",
+    "version": "0.6.2"
+  },
+  "recordings": [
+    {
+      "call": {
+        "command": "npm",
+        "args": [
+          "test"
+        ],
+        "cwd": "C:\\Users\\Steve\\AppData\\Local\\Temp\\crux-test-DkF1gG",
+        "env": {},
+        "stdin": null
+      },
+      "result": {
+        "stdoutLines": [
+          "",
+          "> test",
+          "> npx vitest run --reporter=default --root C:/Users/Steve/Desktop/Projects/4-WORKSHOP/crux-cli/tests/fixtures/projects/vitest-pass",
+          "",
+          "",
+          "\u001b[1m\u001b[46m RUN \u001b[49m\u001b[22m \u001b[36mv3.2.4 \u001b[39m\u001b[90mC:/Users/Steve/Desktop/Projects/4-WORKSHOP/crux-cli/tests/fixtures/projects/vitest-pass\u001b[39m",
+          "",
+          " \u001b[32m✓\u001b[39m tests/sample.test.ts \u001b[2m(\u001b[22m\u001b[2m4 tests\u001b[22m\u001b[2m | \u001b[22m\u001b[33m1 skipped\u001b[39m\u001b[2m)\u001b[22m\u001b[32m 2\u001b[2mms\u001b[22m\u001b[39m",
+          "",
+          "\u001b[2m Test Files \u001b[22m \u001b[1m\u001b[32m1 passed\u001b[39m\u001b[22m\u001b[90m (1)\u001b[39m",
+          "\u001b[2m      Tests \u001b[22m \u001b[1m\u001b[32m3 passed\u001b[39m\u001b[22m\u001b[2m | \u001b[22m\u001b[33m1 skipped\u001b[39m\u001b[90m (4)\u001b[39m",
+          "\u001b[2m   Start at \u001b[22m 14:22:25",
+          "\u001b[2m   Duration \u001b[22m 547ms\u001b[2m (transform 30ms, setup 0ms, collect 32ms, tests 2ms, environment 0ms, prepare 291ms)\u001b[22m",
+          ""
+        ],
+        "stderrLines": [
+          ""
+        ],
+        "allLines": null,
+        "exitCode": 0,
+        "signal": null,
+        "durationMs": 6011.4156,
+        "aborted": false,
+        "failed": false,
+        "timedOut": false,
+        "isMaxBuffer": false,
+        "isForcefullyTerminated": false,
+        "isGracefullyCanceled": false,
+        "killed": false
+      },
+      "_redactions": []
+    }
+  ]
+}

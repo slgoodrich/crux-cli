@@ -1,0 +1,24 @@
+
+ RUN  v4.1.5 C:/Users/Steve/Desktop/Projects/4-WORKSHOP/crux-cli/tests/fixtures/projects/vitest-compile-error
+
+ ❯ tests/broken.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/broken.test.ts [ tests/broken.test.ts ]
+Error: Cannot find module './nonexistent.js' imported from C:/Users/Steve/Desktop/Projects/4-WORKSHOP/crux-cli/tests/fixtures/projects/vitest-compile-error/tests/broken.test.ts
+ ❯ tests/broken.test.ts:2:1
+      1| import { describe, expect, it } from 'vitest'
+      2| import { thingThatDoesNotExist } from './nonexistent.js'
+       | ^
+      3|
+      4| describe('import-error', () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  01:41:25
+   Duration  267ms (transform 20ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)
+

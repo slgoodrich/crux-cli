@@ -1,0 +1,12 @@
+node_modules/
+dist/
+coverage/
+*.log
+.vitest-mq
+tests/fixtures/projects/*/node_modules/
+
+.env
+.env.*
+!.env.example
+
+skills-lock.json

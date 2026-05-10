@@ -1,0 +1,35 @@
+
+ RUN  v4.1.5 C:/Users/Steve/Desktop/Projects/4-WORKSHOP/crux-cli/tests/fixtures/projects/vitest-fail-single
+
+ ❯ tests/sample.test.ts (3 tests | 1 failed) 8ms
+     ✓ passes a sanity check 2ms
+     × fails one expectation 4ms
+     ✓ passes another sanity check 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/sample.test.ts > sample > fails one expectation
+AssertionError: expected 'hello world' to match /^xyz/
+
+- Expected:
+/^xyz/
+
++ Received:
+"hello world"
+
+ ❯ tests/sample.test.ts:9:27
+      7|
+      8|   it('fails one expectation', () => {
+      9|     expect('hello world').toMatch(/^xyz/)
+       |                           ^
+     10|   })
+     11|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  01:39:32
+   Duration  247ms (transform 17ms, setup 0ms, import 42ms, tests 8ms, environment 0ms)
+

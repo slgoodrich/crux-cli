@@ -1,0 +1,26 @@
+vitest.config.ts (2:42) [33m[UNRESOLVED_IMPORT] Warning:[0m Could not resolve 'this-package-does-not-exist' in vitest.config.ts
+   [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m vitest.config.ts:2:43 [38;5;246m][0m
+   [38;5;246m│[0m
+ [38;5;246m2 │[0m [38;5;249mi[0m[38;5;249mm[0m[38;5;249mp[0m[38;5;249mo[0m[38;5;249mr[0m[38;5;249mt[0m[38;5;249m [0m[38;5;249m{[0m[38;5;249m [0m[38;5;249ms[0m[38;5;249mo[0m[38;5;249mm[0m[38;5;249me[0m[38;5;249mt[0m[38;5;249mh[0m[38;5;249mi[0m[38;5;249mn[0m[38;5;249mg[0m[38;5;249mT[0m[38;5;249mh[0m[38;5;249ma[0m[38;5;249mt[0m[38;5;249mD[0m[38;5;249mo[0m[38;5;249me[0m[38;5;249ms[0m[38;5;249mN[0m[38;5;249mo[0m[38;5;249mt[0m[38;5;249mE[0m[38;5;249mx[0m[38;5;249mi[0m[38;5;249ms[0m[38;5;249mt[0m[38;5;249m [0m[38;5;249m}[0m[38;5;249m [0m[38;5;249mf[0m[38;5;249mr[0m[38;5;249mo[0m[38;5;249mm[0m[38;5;249m [0m'this-package-does-not-exist'
+ [38;5;240m  │[0m                                           ──────────────┬──────────────  
+ [38;5;240m  │[0m                                                         ╰──────────────── Module not found, treating it as an external dependency
+[38;5;246m───╯[0m
+
+[31mfailed to load config from C:\Users\Steve\Desktop\Projects\4-WORKSHOP\crux-cli\tests\fixtures\projects\vitest-config-error\vitest.config.ts[39m
+
+⎯⎯⎯⎯⎯⎯⎯ Startup Error ⎯⎯⎯⎯⎯⎯⎯⎯
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'this-package-does-not-exist' imported from C:\Users\Steve\Desktop\Projects\4-WORKSHOP\crux-cli\tests\fixtures\projects\vitest-config-error\node_modules\.vite-temp\vitest.config.ts.timestamp-1778305081239-68f4b2ad44b39.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:267:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:854:18)
+    at defaultResolve (node:internal/modules/esm/resolve:984:11)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:780:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:704:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:687:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:305:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:137:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+
+
